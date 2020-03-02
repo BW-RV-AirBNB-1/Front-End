@@ -25,7 +25,7 @@ export default function Login () {
     setIsFetching(true);
 
     axiosWithAuth()
-      .post('/users/login', credentials)
+      .post('/users/api/login', credentials)
       .then(res => {
         localStorage.setItem('email', res.data.user.email);
         localStorage.setItem('password', credentials.password);
@@ -35,8 +35,8 @@ export default function Login () {
 
   return (
     <div>
-        <div className="login">
-            <div className="login-cont">
+        <div>
+            <div>
                 <h1>Login</h1>
                 <form onSubmit={login}>
                     <input type="email" name="email" placeholder="Email" value={credentials.email} onChange={handleChanges} required />
