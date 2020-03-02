@@ -1,5 +1,7 @@
 import React from "react";
 
+import ListingCard from "./ListingCard.js";
+
 export default function ListingPage() {
     return (
         <div>
