@@ -8,8 +8,8 @@ export const getData = () => dispatch => {
     dispatch({ type: FETCH_DATA });
     axios.get("")
     .then(res => {
-        console.log(res.data.data);
-        dispatch({ type: UPDATE_ITEMS, payload: res.data.data });
+        console.log(res.data);
+        dispatch({ type: UPDATE_ITEMS, payload: res.data });
     })
     .catch(err => {
         console.log("error fetching API", err);
