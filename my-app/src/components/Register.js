@@ -1,13 +1,7 @@
 // React
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 // Axios
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-// Styling
-import { Button, Form, FormGroup, Input } from 'reactstrap';
-//Import Particles-JS
-import Particles from 'react-particles-js';
-import "./Register.css";
 
 
 export default function Register() {
@@ -26,7 +20,6 @@ export default function Register() {
   };
 
   // POST credentials to local storage token
-  let history = useHistory();
   const register = e => {
     e.preventDefault();
     setIsFetching(true);
@@ -34,7 +27,6 @@ export default function Register() {
       .post('/api/register', credentials)
       .then(res => {
         console.log(res.data);
-        history.push('/login');
       })
       .catch(err => console.log(err));
   };

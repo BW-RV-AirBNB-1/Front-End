@@ -1,4 +1,4 @@
-import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth.js";
 
 export const FETCH_DATA = "FETCH_DATA";
 export const UPDATE_ITEMS = "UPDATE_ITEMS";
@@ -6,7 +6,8 @@ export const IS_ERROR = "IS_ERROR";
 
 export const getData = () => dispatch => {
     dispatch({ type: FETCH_DATA });
-    axios.get("")
+    axiosWithAuth()
+    .get("/api/listings")
     .then(res => {
         console.log(res.data);
         dispatch({ type: UPDATE_ITEMS, payload: res.data });

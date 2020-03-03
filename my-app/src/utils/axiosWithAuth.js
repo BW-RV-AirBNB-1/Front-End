@@ -7,7 +7,7 @@ export const axiosWithAuth = () => {
   const password = localStorage.getItem('password');
 
   return axios.create({
-    baseURL: '',
+    baseURL: 'https://build-wk-4-backend-coreygumbs.herokuapp.com',
     headers: {
       authorization: token,
       email: email,

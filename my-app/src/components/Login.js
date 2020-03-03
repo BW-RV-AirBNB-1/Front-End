@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
@@ -11,6 +10,7 @@ export default function Login () {
     password: ''
   });
   const [isFetching, setIsFetching] = useState(false);
+  const [error, setError] = useState([])
 
   // Set credentials to it's state
   const handleChanges = e => {
@@ -19,7 +19,6 @@ export default function Login () {
   };
 
   // POST credentials to local storage
-  let history = useHistory();
   const login = e => {
     e.preventDefault();
     setIsFetching(true);
@@ -35,18 +34,26 @@ export default function Login () {
 
   return (
     <div>
-        <div>
-            <div>
-                <h1>Login</h1>
-                <form onSubmit={login}>
-                    <input type="email" name="email" placeholder="Email" value={credentials.email} onChange={handleChanges} required />
-                    <input type="password" name="password" placeholder="Password" value={credentials.password} onChange={handleChanges} required />
-                <button>Log in</button>
-                </form>
-                <p>{isFetching ? 'Loading...' : null}</p>
-                <p>{error ? error : null}</p>
-            </div>
-        </div>
+        <h1>Login</h1>
+        <form onSubmit={login}>
+            <input 
+                type="email" 
+                name="email" 
+                placeholder="Email" 
+                value={credentials.email} 
+                onChange={handleChanges} 
+                required />
+            <input 
+                type="password" 
+                name="password" 
+                placeholder="Password" 
+                value={credentials.password} 
+                onChange={handleChanges} 
+                required />
+        <button>Log in</button>
+        </form>
+        <p>{isFetching ? 'Loading...' : null}</p>
+        <p>{error ? error : null}</p>
     </div>
   );
 };
