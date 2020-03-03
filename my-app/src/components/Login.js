@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
+import { useHistory } from "react-router-dom";
+
 
 
 export default function Login () {
 
   const [credentials, setCredentials] = useState({
-    email: '',
+    username: '',
     password: ''
   });
   const [isFetching, setIsFetching] = useState(false);
@@ -18,29 +20,34 @@ export default function Login () {
     console.log("NEW credentials from Login", credentials);
   };
 
+  const history = useHistory();
+
   // POST credentials to local storage
   const login = e => {
     e.preventDefault();
     setIsFetching(true);
 
     axiosWithAuth()
-      .post('/users/api/login', credentials)
+      .post('/api/login', credentials)
       .then(res => {
-        localStorage.setItem('email', res.data.user.email);
-        localStorage.setItem('password', credentials.password);
+          console.log(res.data)
+          history.push("/Home")
+        // localStorage.setItem('username', credentials.username);
       })
       .catch(err => console.log(err));
-  };
+    console.log(credentials)
+};
+
 
   return (
     <div>
         <h1>Login</h1>
         <form onSubmit={login}>
             <input 
-                type="email" 
-                name="email" 
-                placeholder="Email" 
-                value={credentials.email} 
+                type="username" 
+                name="username" 
+                placeholder="username" 
+                value={credentials.username} 
                 onChange={handleChanges} 
                 required />
             <input 

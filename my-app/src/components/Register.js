@@ -3,13 +3,17 @@ import React, { useState } from 'react';
 // Axios
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
+import { useHistory } from "react-router-dom";
+
 
 export default function Register() {
   // Set initial state for credentials, fetch check and error
   const [credentials, setCredentials] = useState({
-    email: '',
-    password: ''
+    username: '',
+    password: '',
+    is_land_owner: false
   });
+  
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState('');
 
@@ -26,10 +30,13 @@ export default function Register() {
     axiosWithAuth()
       .post('/api/register', credentials)
       .then(res => {
-        console.log(res.data);
+          console.log(res.data)
+        localStorage.setItem("user", res.data)
+        // localStorage.setItem("token")
       })
       .catch(err => console.log(err));
-  };
+    console.log(credentials);
+};
 
   return (
     <div>
@@ -39,10 +46,10 @@ export default function Register() {
           <h2>Register:</h2>
           <form onSubmit={register}>
               <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={credentials.email}
+                type="username"
+                name="username"
+                placeholder="username"
+                value={credentials.username}
                 onChange={handleChanges}
                 required
               />
@@ -54,6 +61,13 @@ export default function Register() {
                 onChange={handleChanges}
                 required
               />
+              <input
+                type="checkbox"
+                name="is_land_owner"
+                placeholder="are you a land owner?"
+                value={credentials.is_land_owner}
+                onChange={handleChanges}
+                />
             <button>Submit</button>
           </form>
           <p>{isFetching ? 'Loading...' : null}</p>

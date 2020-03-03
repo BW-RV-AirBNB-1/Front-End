@@ -21,11 +21,11 @@ function App() {
         <Route path="/register">
           <Register />
         </Route>
-        <Route>
-          <ListingPage />
-        </Route>
         <Route exact path="/">
           <LandingPage />
+        </Route>
+        <Route>
+          <ListingPage />
         </Route>
       </Switch>
     </Router>
