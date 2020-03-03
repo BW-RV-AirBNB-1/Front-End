@@ -7,7 +7,8 @@ import Home from "./components/Home.js";
 import PrivateRoute from './components/PrivateRoute';
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
-import ListingPage from './components/ListingPage';
+import ListingPage from './components/ListingPage.js';
+import LandingPage from "./components/LandingPage.js";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route>
           <ListingPage />
+        </Route>
+        <Route exact path="/">
+          <LandingPage />
         </Route>
       </Switch>
     </Router>
