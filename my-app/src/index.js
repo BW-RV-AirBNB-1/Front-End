@@ -7,8 +7,8 @@ import * as serviceWorker from './serviceWorker';
 import { ListingReducer } from "./reducers/ListingReducer.js";
 
 import { createStore, applyMiddleware } from "redux";
-import { Provider } from "react-redux"
-import thunk from "redux-thunk"
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 
 const store = createStore(ListingReducer, applyMiddleware(thunk));
 
