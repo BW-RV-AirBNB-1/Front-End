@@ -13,7 +13,7 @@ export default function Register() {
     password: '',
     is_land_owner: false
   });
-  
+
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState('');
 
@@ -31,7 +31,7 @@ export default function Register() {
       .post('/api/register', credentials)
       .then(res => {
           console.log(res.data)
-        localStorage.setItem("user", res.data)
+        localStorage.setItem("user", JSON.stringify(res.data))
         // localStorage.setItem("token")
       })
       .catch(err => console.log(err));
@@ -61,6 +61,7 @@ export default function Register() {
                 onChange={handleChanges}
                 required
               />
+              <h4>are you a land owner?</h4>
               <input
                 type="checkbox"
                 name="is_land_owner"

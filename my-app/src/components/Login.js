@@ -31,8 +31,8 @@ export default function Login () {
       .post('/api/login', credentials)
       .then(res => {
           console.log(res.data)
-          history.push("/Home")
-        // localStorage.setItem('username', credentials.username);
+          history.push("/dashboard")
+          localStorage.setItem('user', JSON.stringify(res.data));
       })
       .catch(err => console.log(err));
     console.log(credentials)
