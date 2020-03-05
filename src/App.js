@@ -3,11 +3,11 @@ import './App.css';
 
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
-import Dashboard from "./components/Dashboard.js";
+import Dashboard from "./components/Dashboard.js.js";
 import PrivateRoute from './components/PrivateRoute';
-import Login from "./components/Login.js";
-import Register from "./components/Register.js";
-import ListingPage from './components/ListingPage.js';
+import Login from "./components/Login.js.js";
+import Register from "./components/Register.js.js";
+import ListingPage from './components/ListingPage.js.js';
 
 function App() {
   return (
