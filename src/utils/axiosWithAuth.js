@@ -6,8 +6,8 @@ export const axiosWithAuth = () => {
   return axios.create({
     baseURL: 'https://build-wk-4-backend-coreygumbs.herokuapp.com',
     headers: {
-        "Authorization": "token",
-        "content-Type": "application/json"
+        Authorization: token,
+        // "content-Type": "application/json"
     }
   });
 };

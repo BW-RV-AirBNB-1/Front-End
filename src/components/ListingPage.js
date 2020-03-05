@@ -14,13 +14,11 @@ const ListingPage = (props) => {
     return (
         <div>
             <h1>Header on the Listing Page</h1>
-            {props.listings.map(listing => (
+            {props.listings.map(item => (
                 <ListingCard 
-                listing={listing}
-                title={props.title}
-                description={props.description}
-                price={props.price_per_day}
-                id={props.id}/>
+                key={item.id}
+                listing={item}
+                />
             ))}
         </div>
     )
@@ -37,3 +35,8 @@ export default connect(
     mapStateToProps, 
     { getData }
 )(ListingPage);
+
+// title={props.title}
+//                 description={props.description}
+//                 price={props.price_per_day}
+//                 id={props.id}/>

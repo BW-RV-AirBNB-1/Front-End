@@ -15,7 +15,7 @@ function App() {
     <Link to="/login">Link to Login</Link>    
     <Link to="/register">Link to Register</Link>
       <Switch>
-        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <Route path="/login" render={props => <Login {...props}/>}/>
         <Route path="/register" render={props => <Register {...props}/>}/>
         <Route exact path="/">
