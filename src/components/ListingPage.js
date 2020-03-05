@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 
 import { connect } from "react-redux";
-import { getData } from "../actions/actions.js";
+import { getData } from "../actions/actions.js.js";
 
-import ListingCard from "./ListingCard.js";
+import ListingCard from "./ListingCard.js.js";
 
 const ListingPage = (props) => {
 
