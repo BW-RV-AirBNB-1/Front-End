@@ -31,7 +31,7 @@ export default function Register() {
       .post('/api/register', credentials)
       .then(res => {
           console.log(res.data)
-        localStorage.setItem("user", JSON.stringify(res.data))
+        localStorage.setItem("land_owner", JSON.stringify(res.data.user.is_land_owner))
         // localStorage.setItem("token")
       })
       .catch(err => console.log(err));

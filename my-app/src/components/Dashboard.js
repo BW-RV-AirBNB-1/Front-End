@@ -14,15 +14,9 @@ export default function Dashboard() {
 
     return (
         <div>
-             (
-            <div>
-            <h1>Title</h1>
-            </div>)
-             : 
-             (
             <h1>This is the homepage</h1>
             <ListingPage />
-             )
+             
         </div>
     )
 }

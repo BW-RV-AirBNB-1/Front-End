@@ -8,7 +8,6 @@ import PrivateRoute from './components/PrivateRoute';
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
 import ListingPage from './components/ListingPage.js';
-import LandingPage from "./components/LandingPage.js";
 
 function App() {
   return (
@@ -22,10 +21,7 @@ function App() {
           <Register />
         </Route>
         <Route exact path="/">
-          <LandingPage />
-        </Route>
-        <Route>
-          <ListingPage />
+         <div><h1>this is test</h1></div>
         </Route>
       </Switch>
     </Router>
