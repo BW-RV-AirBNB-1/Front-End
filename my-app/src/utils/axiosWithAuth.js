@@ -1,17 +1,13 @@
 import axios from 'axios';
 
-
 export const axiosWithAuth = () => {
-  const token = localStorage.getItem('token');
-  const email = localStorage.getItem('email');
-  const password = localStorage.getItem('password');
+    const token = localStorage.getItem('token');
 
   return axios.create({
     baseURL: 'https://build-wk-4-backend-coreygumbs.herokuapp.com',
     headers: {
-      authorization: token,
-      email: email,
-      password: password
+        "Authorization": "token",
+        "content-Type": "application/json"
     }
   });
 };
