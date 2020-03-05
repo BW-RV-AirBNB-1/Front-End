@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import  ListingPage  from "./ListingPage.js.js";
+import  ListingPage  from "./ListingPage.js";
 
 export default function Dashboard() {
 
