@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 
 
@@ -20,7 +20,7 @@ export default function Login (props) {
     console.log("NEW credentials from Login", credentials);
   };
 
-  // const history = useHistory();
+  const history = useHistory();
 
   // POST credentials to local storage
   const login = e => {
@@ -31,9 +31,10 @@ export default function Login (props) {
       .post('/api/login', credentials)
       .then(res => {
           console.log(res.data)
-          props.history.push("/dashboard")
-          localStorage.setItem('user', JSON.stringify(res.data));
-          localStorage.setItem("land_owner", JSON.stringify(res.data.user.is_land_owner))
+          // props.history.push("/dashboard")
+          localStorage.setItem('token', res.data.token);
+          localStorage.setItem("land_owner", res.data.user.is_land_owner)
+          history.push("/dashboard");
       })
       .catch(err => console.log(err));
     console.log(credentials)
@@ -58,7 +59,7 @@ export default function Login (props) {
                 value={credentials.password} 
                 onChange={handleChanges} 
                 required />
-        <button>Log in</button>
+          <button type="submit">Log in</button>
         </form>
         <p>{isFetching ? 'Loading...' : null}</p>
         <p>{error ? error : null}</p>

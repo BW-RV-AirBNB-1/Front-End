@@ -67,7 +67,7 @@ export default function Register(props) {
                 type="checkbox"
                 name="is_land_owner"
                 placeholder="are you a land owner?"
-                value={credentials.is_land_owner}
+                checked={credentials.is_land_owner}
                 onChange={handleChanges}
                 />
             <button>Submit</button>
