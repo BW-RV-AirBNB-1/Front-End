@@ -6,7 +6,7 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { useHistory } from "react-router-dom";
 
 
-export default function Register() {
+export default function Register(props) {
   // Set initial state for credentials, fetch check and error
   const [credentials, setCredentials] = useState({
     username: '',
@@ -32,6 +32,7 @@ export default function Register() {
       .then(res => {
           console.log(res.data)
         localStorage.setItem("land_owner", JSON.stringify(res.data.user.is_land_owner))
+        props.history.push('/dashboard');
         // localStorage.setItem("token")
       })
       .catch(err => console.log(err));

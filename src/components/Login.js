@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 
 
-export default function Login () {
+export default function Login (props) {
 
   const [credentials, setCredentials] = useState({
     username: '',
@@ -20,7 +20,7 @@ export default function Login () {
     console.log("NEW credentials from Login", credentials);
   };
 
-  const history = useHistory();
+  // const history = useHistory();
 
   // POST credentials to local storage
   const login = e => {
@@ -31,8 +31,9 @@ export default function Login () {
       .post('/api/login', credentials)
       .then(res => {
           console.log(res.data)
-          history.push("/dashboard")
+          props.history.push("/dashboard")
           localStorage.setItem('user', JSON.stringify(res.data));
+          localStorage.setItem("land_owner", JSON.stringify(res.data.user.is_land_owner))
       })
       .catch(err => console.log(err));
     console.log(credentials)
