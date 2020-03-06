@@ -6,8 +6,8 @@ import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 import Dashboard from "./components/Dashboard.js";
 import PrivateRoute from './components/PrivateRoute';
 import Login from "./components/Login.js";
-import Register from "./components/Register.js";
-import ListingPage from './components/ListingPage.js';
+import Register from "./components/Register.js"
+import ListingForm from './components/ListingForm';
 
 function App() {
   return (

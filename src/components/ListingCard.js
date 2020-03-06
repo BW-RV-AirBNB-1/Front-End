@@ -44,8 +44,8 @@ const ListingCard = props => {
         user_id: userID,
         listings_id: props.listing.id,
         is_reserved: true,
-        date_from: "",
-        date_to: ""
+        reserved_from: "",
+        reserved_to: ""
     })
 
     const handleChanges = (e) => {
@@ -69,33 +69,37 @@ const ListingCard = props => {
         const goToReservation = () => {
             setReservation(!reservation); 
         }
+
+        const deleteID = (e) => {
+            props.deleteData(props.listing.id);
+        }
       
 
-    return !reservation ? (
-                <Card>
-                <h1>{props.listing.title}</h1>
-                <h2>Location: {props.listing.state}</h2>
-                <h2>Description: {props.listing.description}</h2>
-                <h3>Price Per Day: {props.listing.price_per_day}</h3>
-                <h2>Listing Priority: {props.listing.id}</h2>
-                <img src={toString(props.listing.photo_url)} alt="photo of listing"/>
-                <Button onClick={goToReservation}>Reserve</Button>
-                </Card>
-            ) : 
-            (
-                <Card>
-                <h2>Reservation Form</h2>
-                <form>
-                <label htmlFor="date_from">When will your trip begin?
-                    <input type="date" name="date_from" onChange={handleChanges} value={cardState.date_from} min="2020-01-01" max="2020-12-31" />
-                </label>
-                <label htmlFor="date_to">When will you return?
-                    <input type="date" name="date_to" value={cardState.date_to} onChange={handleChanges} min="2020-01-01" max="2020-12-31"/>
-                    </label>
-                <Button onClick={onSubmit}>Reserve</Button>
-                </form>
-                </Card>
-            )
+        return (
+            <Card>
+            <h3>Card</h3>
+            <h1>{props.listing.title}</h1>
+            <h2>Location: {props.listing.state}</h2>
+            <h2>Description: {props.listing.description}</h2>
+            <h2>Listing Priority: {props.listing.id}</h2>
+            <Button onClick={goToReservation}>Reserve</Button>
+            <Button onClick={deleteID}>Delete</Button>
+            </Card>
+        )
+        // (
+        //     <Card>
+        //     <h2>Reservation Form</h2>
+        //     <form onSubmit={onSubmit}>
+        //     <label htmlFor="date_from">When will your trip begin?
+        //         <input type="date" name="date_from" onChange={handleChanges} value={cardState.date_from} min="2020-01-01" max="2020-12-31" />
+        //     </label>
+        //     <label htmlFor="date_to">When will you return?
+        //         <input type="date" name="date_to" value={cardState.reserved_to} onChange={handleChanges} min="2020-01-01" max="2020-12-31"/>
+        //         </label>
+        //     <Button onClick={onSubmit}>Reserve</Button>
+        //     </form>
+        //     </Card>
+        // )
 }
 const mapStateToProps = (state) => {
     return {

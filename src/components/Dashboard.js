@@ -11,7 +11,6 @@ export default function Dashboard() {
         <div>
             <h1>This is the homepage</h1>
             <ListingPage />
-             
         </div>
     )
 }
