@@ -71,3 +71,22 @@ export const deleteData = () => dispatch => {
         dispatch({ type: DELETE_LISTING_FAILURE, payload: "Error deleting listing" });
     })
 }
+
+export const POST_RES = "POST_RES";
+export const POST_RES_SUCCESS = "POST_RES_SUCCESS";
+export const POST_RES_FAIL = "POST_RES_FAIL";
+
+
+export const postReservation = (reservations) => dispatch => {
+    dispatch({ type: POST_RES })
+
+    axiosWithAuth()
+        .post(`/api/reservations/`, reservations)
+        .then(res => {
+            console.log(res.data);
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: POST_RES_FAIL, payload: err.response })
+        })
+}
