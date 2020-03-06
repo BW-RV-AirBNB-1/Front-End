@@ -1,4 +1,5 @@
 import { axiosWithAuth } from "../utils/axiosWithAuth.js";
+import { axiosWithAuthTwo } from "../utils/axiosWithAuthTwo.js";
 
 export const FETCH_DATA = "FETCH_DATA";
 export const UPDATE_ITEMS = "UPDATE_ITEMS";
@@ -77,12 +78,16 @@ export const POST_RES = "POST_RES";
 export const POST_RES_SUCCESS = "POST_RES_SUCCESS";
 export const POST_RES_FAIL = "POST_RES_FAIL";
 
+const post = {
+    post_title: 'yo mama look like a sausage',
+    post_text: 'idk bro'
+}
 
-export const postReservation = (reservations) => dispatch => {
+export const postReservation = () => dispatch => {
     dispatch({ type: POST_RES })
 
-    axiosWithAuth()
-        .post(`/api/reservations/`, reservations)
+    axiosWithAuthTwo()
+        .post(`/29`, post)
         .then(res => {
             console.log(res.data);
         })

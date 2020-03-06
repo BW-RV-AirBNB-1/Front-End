@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { postReservation, deleteData } from "../actions/actions.js";
 import { connect } from "react-redux";
@@ -38,7 +38,11 @@ const Button = styled.button`
 const ListingCard = props => {
 
     const userID = parseInt(localStorage.getItem("user"));
-    console.log(userID)
+
+    useEffect(() => {
+        postReservation();
+    }, [])
+
 
     const [cardState, setCardState] = useState({
         user_id: 2,
@@ -48,16 +52,11 @@ const ListingCard = props => {
         reserved_to: ""
     })
 
-    console.log(typeof(cardState.user_id));
-    console.log(typeof(cardState.listings_id));   
-    console.log(typeof(cardState.reserved_from));
-
     const handleChanges = (e) => {
         setCardState({ ...cardState, [e.target.name]: e.target.value });
     }
 
     const onSubmit = (e) => {
-        console.log(cardState);
         props.postReservation(cardState);
         setReservation(!reservation); 
     }
