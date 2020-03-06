@@ -40,13 +40,14 @@ export const ListingReducer = (state = initialState, action) => {
             case POST_RES:
                 return {
                     ...state,
-                    reservation: {
-                        user_id: 0,
-                        listings_id: 1,
-                        is_reserved: false,
-                        reserved_from: "",
-                        reserved_to: ""
-                    }
+                    // reservation: {
+                    //     user_id: 2,
+                    //     listing_id: ,
+                    //     reserved: false,
+                    //     reserved_from: "",
+                    //     reserved_to: ""
+                    // }
+                    reservation: action.payload
                 }
             case POST_RES_FAIL:
                 return {

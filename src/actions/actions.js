@@ -1,4 +1,5 @@
 import { axiosWithAuth } from "../utils/axiosWithAuth.js";
+import { axiosWithAuthTwo } from "../utils/axiosWithAuthTwo.js";
 
 export const FETCH_DATA = "FETCH_DATA";
 export const UPDATE_ITEMS = "UPDATE_ITEMS";
@@ -44,10 +45,10 @@ export const addData = (listing) => dispatch => {
     })
 }
 
-export const updateData = () => dispatch => {
+export const updateData = (reservation) => dispatch => {
     dispatch({ type: UPDATE_LISTING });
     axiosWithAuth()
-    .put("/api/listings/:listing_id")
+    .put("/api/reservations/", reservation)
     .then(res => {
         console.log(res.data);
         dispatch({ type: UPDATE_LISTING_SUCCESS, payload: res.data });
@@ -63,6 +64,7 @@ export const deleteData = listing => dispatch => {
     axiosWithAuth()
     .delete(`/api/listings/${listing}`)
     .then(res => {
+        console.log("list" , listing)
         console.log(res.data);
         dispatch({ type: DELETE_LISTING_SUCCESS, payload: res.data });
     })
@@ -76,12 +78,16 @@ export const POST_RES = "POST_RES";
 export const POST_RES_SUCCESS = "POST_RES_SUCCESS";
 export const POST_RES_FAIL = "POST_RES_FAIL";
 
+const post = {
+    post_title: 'yo mama look like a sausage',
+    post_text: 'idk bro'
+}
 
-export const postReservation = (reservations) => dispatch => {
+export const postReservation = () => dispatch => {
     dispatch({ type: POST_RES })
 
-    axiosWithAuth()
-        .post(`/api/reservations/`, reservations)
+    axiosWithAuthTwo()
+        .post(`/29`, post)
         .then(res => {
             console.log(res.data);
         })
