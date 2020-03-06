@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import { postReservation } from "../actions/actions.js";
-import { connect } from "react-redux";
+import { postReservation, deleteData } from "../actions/actions.js";
+import  { connect } from "react-redux";
 
 
 import styled from "styled-components";
@@ -20,6 +20,7 @@ const Card = styled.div`
     margin-bottom: 2%;
     h1 {
         display:flex;
+        margin-left: 2%;
     }
 `;
 
@@ -29,6 +30,7 @@ const Button = styled.button`
     height: 50px;
     color: #0074D9;
     border: 1px solid #0074D9;
+    margin-right:2%;
     :hover {
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
         color: white;
@@ -57,7 +59,10 @@ const ListingCard = props => {
         props.postReservation(cardState);
         setReservation(!reservation); 
     }
-    console.log("ID", props.listing.id)
+    console.log("ID123", props.listing.id)
+    const deleteID = (e) => {
+        props.deleteData(props.listing.id);
+    }
 
     const [reservation, setReservation] = useState(false);
     const [filled, setfilled] = useState()
@@ -80,12 +85,13 @@ const ListingCard = props => {
                 <h2>Listing Priority: {props.listing.id}</h2>
                 <img src={toString(props.listing.photo_url)} alt="photo of listing"/>
                 <Button onClick={goToReservation}>Reserve</Button>
+                <Button onClick={deleteID}>Delete</Button>
                 </Card>
             ) : 
             (
                 <Card>
                 <h2>Reservation Form</h2>
-                <form>
+                <form onSubmit={onSubmit}>
                 <label htmlFor="date_from">When will your trip begin?
                     <input type="date" name="date_from" onChange={handleChanges} value={cardState.date_from} min="2020-01-01" max="2020-12-31" />
                 </label>
@@ -107,5 +113,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps, 
-    { postReservation }
+    { postReservation, deleteData }
 )(ListingCard);
