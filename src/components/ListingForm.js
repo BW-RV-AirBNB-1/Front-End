@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 
 
-import  { addData } from "../actions/actions.js";
+import  { addData, updateData } from "../actions/actions.js";
 import styled from "styled-components";
 
 const Button = styled.button`
@@ -79,5 +79,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    { addData }
+    { addData, updateData }
 )(ListingForm);

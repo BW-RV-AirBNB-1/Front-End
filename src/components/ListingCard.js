@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { postReservation } from "../actions/actions.js";
+import { postReservation, deleteData } from "../actions/actions.js";
 import { connect } from "react-redux";
 
 
@@ -37,16 +37,20 @@ const Button = styled.button`
 
 const ListingCard = props => {
 
-    const userID = localStorage.getItem("user");
+    const userID = parseInt(localStorage.getItem("user"));
     console.log(userID)
 
     const [cardState, setCardState] = useState({
-        user_id: userID,
-        listings_id: props.listing.id,
-        is_reserved: true,
+        user_id: 2,
+        listings_id: 3,
+        reserved: false,
         reserved_from: "",
         reserved_to: ""
     })
+
+    console.log(typeof(cardState.user_id));
+    console.log(typeof(cardState.listings_id));   
+    console.log(typeof(cardState.reserved_from));
 
     const handleChanges = (e) => {
         setCardState({ ...cardState, [e.target.name]: e.target.value });
@@ -57,12 +61,9 @@ const ListingCard = props => {
         props.postReservation(cardState);
         setReservation(!reservation); 
     }
-    console.log("ID", props.listing.id)
 
     const [reservation, setReservation] = useState(false);
     const [filled, setfilled] = useState()
-
-    console.log(props.listing.photo_url);
 
         console.log("These are props from listing page" , props);
 
@@ -71,35 +72,35 @@ const ListingCard = props => {
         }
 
         const deleteID = (e) => {
-            props.deleteData(props.listing.id);
+            props.deleteData(props.listing.listings_id);
         }
       
 
-        return (
+        return !reservation ? (
             <Card>
             <h3>Card</h3>
             <h1>{props.listing.title}</h1>
             <h2>Location: {props.listing.state}</h2>
             <h2>Description: {props.listing.description}</h2>
-            <h2>Listing Priority: {props.listing.id}</h2>
+            <h2>Listing Priority: {props.listing.listing_id}</h2>
             <Button onClick={goToReservation}>Reserve</Button>
             <Button onClick={deleteID}>Delete</Button>
             </Card>
+        ) :
+        (
+            <Card>
+            <h2>Reservation Form</h2>
+            <form onSubmit={onSubmit}>
+            <label htmlFor="reserved_from">When will your trip begin?
+                <input type="date" name="reserved_from" onChange={handleChanges} value={cardState.reserved_from} min="2020-01-01" max="2020-12-31" />
+            </label>
+            <label htmlFor="reserved_to">When will you return?
+                <input type="date" name="reserved_to" value={cardState.reserved_to} onChange={handleChanges} min="2020-01-01" max="2020-12-31"/>
+                </label>
+            <Button onClick={onSubmit}>Reserve</Button>
+            </form>
+            </Card>
         )
-        // (
-        //     <Card>
-        //     <h2>Reservation Form</h2>
-        //     <form onSubmit={onSubmit}>
-        //     <label htmlFor="date_from">When will your trip begin?
-        //         <input type="date" name="date_from" onChange={handleChanges} value={cardState.date_from} min="2020-01-01" max="2020-12-31" />
-        //     </label>
-        //     <label htmlFor="date_to">When will you return?
-        //         <input type="date" name="date_to" value={cardState.reserved_to} onChange={handleChanges} min="2020-01-01" max="2020-12-31"/>
-        //         </label>
-        //     <Button onClick={onSubmit}>Reserve</Button>
-        //     </form>
-        //     </Card>
-        // )
 }
 const mapStateToProps = (state) => {
     return {
@@ -111,5 +112,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps, 
-    { postReservation }
+    { postReservation, deleteData }
 )(ListingCard);

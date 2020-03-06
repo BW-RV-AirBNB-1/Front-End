@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 
 import { connect } from "react-redux";
-import { getData } from "../actions/actions.js";
+import { getData, updateData } from "../actions/actions.js";
 
 import ListingCard from "./ListingCard.js";
 import { axiosWithAuth } from "../utils/axiosWithAuth.js";
@@ -31,6 +31,7 @@ const ListingPage = (props) => {
         axiosWithAuth()
         .get("api/reservations")
         .then(res => {
+            setData(res.data)
             console.log(res.data);
         })
         .catch(err => {
@@ -43,12 +44,21 @@ const ListingPage = (props) => {
     }, [])
 
     console.log(props.listings, "listings page listing")
+    
+    // const listing2 = {
+    //     user_id: 0,
+    //     listing_id: 3,
+    //     reserved: false,
+    //     reserved_from: "",
+    //     reserved_to: ""
+    // }
+    // props.updateData(listing2);
 
     return (
         <div>
             <h1>Header on the Listing Page</h1>
             <Button onClick={getReservations}>Get Reservations</Button>
-            {props.listings.map(listing => (
+            {data.map(listing => (
                 <ListingCard 
                 key={listing.id}
                 listing={listing}
@@ -67,7 +77,7 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps, 
-    { getData }
+    { getData, updateData }
 )(ListingPage);
 
 // title={props.title}

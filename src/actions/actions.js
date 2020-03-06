@@ -44,10 +44,10 @@ export const addData = (listing) => dispatch => {
     })
 }
 
-export const updateData = () => dispatch => {
+export const updateData = (reservation) => dispatch => {
     dispatch({ type: UPDATE_LISTING });
     axiosWithAuth()
-    .put("/api/listings/:listing_id")
+    .put("/api/reservations/", reservation)
     .then(res => {
         console.log(res.data);
         dispatch({ type: UPDATE_LISTING_SUCCESS, payload: res.data });
@@ -63,6 +63,7 @@ export const deleteData = listing => dispatch => {
     axiosWithAuth()
     .delete(`/api/listings/${listing}`)
     .then(res => {
+        console.log("list" , listing)
         console.log(res.data);
         dispatch({ type: DELETE_LISTING_SUCCESS, payload: res.data });
     })
