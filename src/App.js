@@ -7,7 +7,7 @@ import Dashboard from "./components/Dashboard.js";
 import PrivateRoute from './components/PrivateRoute';
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
-import ListingPage from './components/ListingPage.js';
+import ListingForm from './components/ListingForm.js';
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <Route path="/login" render={props => <Login {...props}/>}/>
         <Route path="/register" render={props => <Register {...props}/>}/>
+        <Route path="/listing-form" component={ListingForm}/>
         <Route exact path="/">
          <div><h1>5th Wheel</h1></div>
         </Route>
