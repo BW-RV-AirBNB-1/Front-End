@@ -1,9 +1,15 @@
-import { FETCH_DATA, UPDATE_ITEMS, IS_ERROR  } from "../actions/actions";
+import { 
+    FETCH_DATA, 
+    UPDATE_ITEMS, 
+    IS_ERROR,
+    POST_RES,
+    POST_RES_FAIL  } from "../actions/actions";
 
 const initialState = {
     listings: [],
     isFetchingData: false,
-    error: ""
+    error: "",
+    reservation: []
   };
   
 export const ListingReducer = (state = initialState, action) => {
@@ -25,7 +31,23 @@ export const ListingReducer = (state = initialState, action) => {
                 isFetchingData: false,
                 error: action.payload
             }
+            case POST_RES:
+                return {
+                    ...state,
+                    reservation: {
+                        user_id: 0,
+                        listings_id: 1,
+                        is_reserved: false,
+                        date_from: "",
+                        date_to: ""
+                    }
+                }
+            case POST_RES_FAIL:
+                return {
+                    ...state,
+                    error: action.payload
+                }
         default:
-            return state;
+            return state;   
   }
 };

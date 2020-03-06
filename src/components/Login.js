@@ -32,6 +32,7 @@ export default function Login (props) {
       .then(res => {
           console.log(res.data)
           // props.history.push("/dashboard")
+          localStorage.setItem('user', res.data.user.id)
           localStorage.setItem('token', res.data.token);
           localStorage.setItem("land_owner", res.data.user.is_land_owner)
           history.push("/dashboard");

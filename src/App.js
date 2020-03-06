@@ -19,7 +19,7 @@ function App() {
         <Route path="/login" render={props => <Login {...props}/>}/>
         <Route path="/register" render={props => <Register {...props}/>}/>
         <Route exact path="/">
-         <div><h1>this is test</h1></div>
+         <div><h1>5th Wheel</h1></div>
         </Route>
       </Switch>
     </Router>
